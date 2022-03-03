@@ -1,0 +1,106 @@
+
+#wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 820px;
+    height: 500px;
+    background-color: beige;
+    border: 2px solid grey;
+    border-radius: 10px;
+}
+
+
+#control-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    height: 480px;
+}
+
+#svg-wrapper {
+    width: 400px;
+    height: 480px;
+    padding-right: 8px;
+}
+
+#brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    height: 40px;
+    color: grey;
+    font-size: 3em;
+}
+
+#svg-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 380px;
+    height: 240px;
+    background-color: rgb(236, 210, 251);
+    border: 2px solid grey;
+    border-radius: 10px;
+}
+
+#extra-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 380px;
+    height: 80px;
+    background-color: rgb(236, 210, 251);
+    border: 2px solid grey;
+    border-radius: 10px;
+}
+
+#slider-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 40px;
+    background-color: rgb(218, 163, 250);
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.control-btn {
+    width: 120px;
+    height: 50px;
+    text-align: center;
+    border: 2px solid grey;
+    border-radius: 10px;
+    font-size: 1.1em;
+    background-color: rgb(150, 253, 150);
+}
+
+
+
+
+/* .border {
+    border: 2px solid;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.lime {
+    color: lime;
+} */
