@@ -80,7 +80,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
+    width: 320px;
     height: 40px;
     background-color: rgb(218, 163, 250);
     border: 2px solid grey;
@@ -106,7 +106,7 @@
     border: 2px solid grey;
     border-radius: 10px;
     font-size: 1.1em;
-    background-color: rgb(150, 253, 150);
+    background-color: rgb(72, 218, 255);
 }
 
 p {
@@ -129,3 +129,6 @@ p {
 .lime {
     color: lime;
 } */
+
+
+/* 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 */

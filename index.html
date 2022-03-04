@@ -4,6 +4,8 @@
     </head>
 
     <body>
+        
+        <!-- USER CONTROL SECTION -->
 
         <div id="wrapper" class="border red">
             <div id="control-wrapper">
@@ -12,12 +14,12 @@
                 </h1>
                 <div id="svg-control" class="border blue">
                     <div id="slider-wrapper" class="border blue">
-                        <p>UpDown</p>
-                        <button id="updowneyes" class="target-btn" onclick="UpDown()">Up Down Animation</button>
-                    </div>
-                    <div id="slider-wrapper" class="border blue">
                         <p>Rotate</p>
                         <button id="animate-btn" class="target-btn" onclick="Rotate()">Rotate Animation</button>
+                    </div>
+                    <div id="slider-wrapper" class="border blue">
+                        <p>UpDown</p>
+                        <button id="updowneyes" class="target-btn" onclick="UpDown()">Up Down Animation</button>
                     </div>
                     <div id="slider-wrapper" class="border blue">
                         <p>Size</p>
@@ -37,13 +39,14 @@
                     </div>
                 </div>
                 <div id="extra-control" class="border lime">
-                    <button id="animate-btn" class="target-btn" onclick="Animate()">Animate</button>
-                    <button id="xml-btn" class="target-btn" onclick="XML()">XML</button>
-                    <button id="download-btn" class="target-btn" onclick="Download()">Download</button>
+                    <button id="animate-btn" class="control-btn" onclick="Animate()">Animate</button>
+                    <button id="xml-btn" class="control-btn" onclick="XML()">XML</button>
+                    <button id="download-btn" class="control-btn" onclick="Download()">Download</button>
                 </div>
             </div>
 
-
+            <!-- THE SVG GHOST ELEMENT -->
+            
             <div id = "svg-wrapper" class="border blue">
                 <svg id="supersvg" width="400" height="480" viewBox="0 0 100 120" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <rect id="background" width="100" height="120" style="fill:grey; stroke-width:1; stroke:black"/>
@@ -54,30 +57,21 @@
                                 <ellipse id="eye-l-ball" cx="45" cy="40" rx="4" ry="6"  style="stroke:grey;fill:black;stroke-width:0.5"/>
                                 <rect transform="rotate(16,46,35)" x="40" y="33" width="11" height="6" fill="white" visibility="hidden"/>
                                 <ellipse id="eye-l-pupil" cx="45" cy="44"  rx="1" ry="2" style="stroke:grey;fill:white;stroke-width:0.25"/>
-                                <!-- <line x1="42" y1="30" x2="48" y2="30" style="stroke:rgb(0,0,0);stroke-width:2" /> -->
-                                <rect id="eye-l-brow" x="42" y="30" width="6" height="2"  style="stroke:grey;fill:black;stroke-width:0.25"/>
-                                <!-- <g id="eye-l-brow">
-                                    <path d="M 41 32 Q 45 27 49 32" stroke="black" stroke-width="0.5" fill="transparent"/>
-                                    <path d="M 41 32 Q 45 26 49 32" stroke="black" stroke-width="0.5" fill="transparent"/>
-                                </g> -->
+                                <rect id="eye-l-brow" x="42" y="30" width="6" height="1"  style="stroke:grey;fill:black;stroke-width:0.25"/>
                             </g>
                             <g id="eye-r" transform="rotate(0,50,40),translate(0,0)">
                                 <ellipse id="eye-r-ball" cx="55" cy="40" rx="4" ry="6"  style="stroke:grey;fill:black;stroke-width:0.5"/>
                                 <rect transform="rotate(-16,56,35)" x="49" y="33" width="11" height="6" fill="white" visibility="hidden"/>
                                 <ellipse id="eye-r-pupil" cx="55" cy="44" rx="1" ry="2" style="stroke:grey;fill:white;stroke-width:0.25"/>
-                                <rect  id="eye-r-brow" x="52" y="30" width="6" height="2" style="stroke:grey;fill:black;stroke-width:0.25"/>
-
-                                <!-- <line x1="52" y1="30" x2="58" y2="30" style="stroke:rgb(0,0,0);stroke-width:2" /> -->
-                                <!-- <g id="eye-r-brow">
-                                    <path d="M 51 32 Q 55 27 59 32" stroke="black" stroke-width="0.5" fill="transparent"/>
-                                    <path d="M 51 32 Q 55 26 59 32" stroke="black" stroke-width="0.5" fill="transparent"/>
-                                </g> -->
+                                <rect  id="eye-r-brow" x="52" y="30" width="6" height="1" style="stroke:grey;fill:black;stroke-width:0.25"/>
                             </g>
                         </g>
                     </g>
                 </svg>
             </div>
 
+            <!-- THE XML EDITOR FEILD -->
+           
             <div id="xml-wrapper">
                 <textarea id="editor" name="w3review" rows="31" cols="50">
                 </textarea>
@@ -88,45 +82,3 @@
         <script src="main.js"></script>
     </body>
 </html>
-
-
-
-
-<!-- <div id="svg-control" class="border blue">
-    <div id="slider-wrapper" class="border blue">
-        <p>UpDown</p>
-        <button id="updowneyes" class="target-btn" onclick="UpDownEyes()">Eyes</button>
-        <button id="updownballs" class="target-btn" onclick="UpDownEyeBalls()">Eye-Balls</button>
-        <button id="updownbrows" class="target-btn" onclick="UpDownBrows()">Brows</button>
-    </div>
-    <div id="slider-wrapper" class="border blue">
-        <p>Rotate</p>
-        <button id="animate-btn" class="target-btn" onclick="RotateEye()">Eyes</button>
-        <button id="xml-btn" class="target-btn" onclick="RotateEyeBalls()">Eye-Balls</button>
-        <button id="download-btn" class="target-btn" onclick="RotateBrows()">Brows</button>
-    </div>
-    <div id="slider-wrapper" class="border blue">
-        <p>Size</p>
-        <button id="animate-btn" class="target-btn" onclick="SizeEyes()">Eyes</button>
-        <button id="xml-btn" class="target-btn" onclick="SizeEyeBalls()">Eye-Balls</button>
-        <button id="download-btn" class="target-btn" onclick="SizeBrows()">Brows</button>
-    </div>
-    <div id="slider-wrapper" class="border blue">
-        <p>Color</p>
-        <button id="animate-btn" class="target-btn" onclick="ColorEyes()">Eyes</button>
-        <button id="xml-btn" class="target-btn" onclick="ColorEyeBalls()">Eye-Balls</button>
-        <button id="download-btn" class="target-btn" onclick="ColorEyeBrows()">Brows</button>
-    </div>
-    <div id="slider-wrapper" class="border blue">
-        <p>Border</p>
-        <button id="animate-btn" class="target-btn" onclick="BorderEyes()">Eyes</button>
-        <button id="xml-btn" class="target-btn" onclick="BorderEyeBalls()">Eye-Balls</button>
-        <button id="download-btn" class="target-btn" onclick="BorderEyeBrows()">Brows</button>
-    </div>
-    <div id="slider-wrapper" class="border blue">
-        <p>fuck</p>
-        <button id="animate-btn" class="target-btn" onclick="ScaleGhost()">Eyes</button>
-        <button id="xml-btn" class="target-btn" onclick="ScaleGhost()">Eye-Balls</button>
-        <button id="download-btn" class="target-btn" onclick="ScaleGhost()">Brows</button>
-    </div>
-</div> -->
