@@ -4,7 +4,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 820px;
+    width: 1220px;
     height: 500px;
     background-color: beige;
     border: 2px solid grey;
@@ -27,6 +27,19 @@
     padding-right: 8px;
 }
 
+#xml-wrapper {
+    width: 400px;
+    height: 480px;
+    padding-right: 5px;;
+
+}
+
+#editor {
+    border: 6px solid grey;    
+    border-radius: 10px;
+}
+
+
 #brand {
     display: flex;
     flex-direction: column;
@@ -44,7 +57,7 @@
     justify-content: space-around;
     align-items: center;
     width: 380px;
-    height: 240px;
+    height: 300px;
     background-color: rgb(236, 210, 251);
     border: 2px solid grey;
     border-radius: 10px;
@@ -76,6 +89,16 @@
     padding-right: 10px;
 }
 
+.target-btn {
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    border: 2px solid grey;
+    border-radius: 30px;
+    background-color: rgb(150, 253, 150);
+}
+
+
 .control-btn {
     width: 120px;
     height: 50px;
@@ -86,7 +109,9 @@
     background-color: rgb(150, 253, 150);
 }
 
-
+p {
+    font-size: 1.5em;;
+}
 
 
 /* .border {
