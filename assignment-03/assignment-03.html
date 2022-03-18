@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <!-- loading san serif Roboto fonts from google fonts -->
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="assignment-03.css"/>
+    </head>
+
+    <body>
+
+        <div id="table-wrapper">
+            <table id="record">
+                <tr>
+                  <th>Student Name</th>
+                  <th>Student ID</th>
+                  <th>Average (%)</th>
+                </tr>
+            </table>
+            <!-- unsubmitted assignments -->
+            <span style="color:red;font-size: 22px;">
+                Unsubmitted Assignments:
+                <span style="color:red;font-size: 22px;" id="unsubmitted">0</span>
+            </span>
+            <!-- div for storing buttons -->
+            <div id="buttons">
+                <button id="addrow" onclick="appendRow()">Add Row</button>
+                <button id="addcol" onclick="appendColumn()">Add Col</button>
+                <button id="save" onclick="save()">Save</button>
+                <button id="retreive" onclick="retreive()">Retreive</button>
+            </div>
+        </div>
+
+        <script src="assignment-03.js"></script>
+    </body>
+</html>
+
+
+

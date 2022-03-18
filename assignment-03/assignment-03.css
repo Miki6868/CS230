@@ -1,0 +1,83 @@
+
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+textarea {
+    font-family: 'Roboto', sans-serif;
+}
+
+span {
+    font-family: 'Roboto', sans-serif;
+}
+
+th {
+    text-align: center;
+    font-family: Arial; 
+    background-color: darkgrey;
+}
+
+td:nth-child(0), td:nth-child(1) {
+    text-align: left;
+}
+
+
+tr:nth-child(2n+1) {
+    background-color: rgb(0, 255, 119);
+}
+
+tr:nth-child(2n) {
+    background-color: #007474;
+}
+
+tr:hover {background-color: red;}
+td, th { padding:0px; border: 1px solid #ddd; }
+td { outline: 1px solid rgb(144, 144, 144); }
+
+textarea {
+    resize: none;
+    font-size: 1.25em;
+}
+
+
+#table-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+#buttons {
+    margin: 20px;
+}
+
+#addrow {
+    border-radius: 8px;
+    padding: 5 10 5 10;
+    font-size: 1.25em;
+    background-color: cyan;
+}
+
+#addcol {
+    border-radius: 8px;
+    padding: 5 10 5 10;
+    font-size: 1.25em;
+    background-color: yellow;
+}
+
+#retreive {
+    border-radius: 8px;
+    padding: 5 10 5 10;
+    font-size: 1.25em;
+    background-color: red;
+}
+
+#save {
+    border-radius: 8px;
+    padding: 5 10 5 10;
+    font-size: 1.25em;
+    background-color: orange;
+}
