@@ -1,0 +1,17 @@
+{
+  "name": "assingment-04-19719431",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^5.5.3",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
+    "prompt-sync": "^4.2.0"
+  }
+}

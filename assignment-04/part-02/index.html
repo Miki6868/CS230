@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #app {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                /* border: 2px solid red; */
+                background-color: cyan;
+            }
+            #myform {
+                width: 380px;
+                height: 580px;
+                border: 2px solid grey;
+                background-color: beige;
+            }
+            #mytable {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;
+                height: 580px;
+                align-items: center;
+                border: 2px solid grey;
+                background-color: beige;
+            }
+            .section {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                width: 380px;
+                min-height: 50px;
+                border-bottom: 1px solid grey;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .subsection {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                width: 305px;
+                min-height: 30px;
+            }
+            .field {
+                width: 300px;
+                height: 20px;
+                border: 1px solid grey;
+                border-radius: 4px;
+                margin-bottom: 10px;
+                font-size: 1.25em;
+                resize: none;
+            }
+            button {
+                background-color: rgb(74, 135, 204);
+                font-size: 1.1em;
+                padding: 6px;
+                border: 1px solid transparent;
+                border-radius: 8px;
+            }
+            th {
+                background-color: darkgrey;
+                border: 1px solid grey;
+                padding: 2px;
+            }
+            td {
+                border: 1px solid darkgrey;
+                padding: 2px;
+            }
+            h3 {
+                border-bottom: 2px solid grey;
+            }
+        </style>
+        <!-- IMPORTING jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <div id="myform">
+                <!-- CREATE -->
+                <div class="section">
+                    <button id="retrieve" onclick="reqCreate()">Create User</button>
+                </div>
+                <!-- RETRIEVE -->
+                <div class="section">
+                    <textarea class="field" id="firstname-ret" rows="1" cols="50" placeholder="firstname 'John'"></textarea>
+                    <button id="retrieve" onclick="reqRetrieve()">Retrieve User</button>
+                </div>
+                <!-- UPDATE -->
+                <div class="section">
+                    <div class="subsection">
+                        <textarea class="field" style="width:150px;" id="id-upt" rows="1" cols="50" 
+                            placeholder="user id e.g '1'"></textarea>
+                        <select name="cars" id="cars" style="margin-bottom:10px;">
+                            <option value="Mr">Mr</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Mx">Mx</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Miss">Miss</option>
+                            <option value="Dr">Dr</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <textarea onfocus="setTitle()" class="field" id="title-upt" rows="1" cols="50" placeholder="title 'Dr'"></textarea>
+                    <textarea class="field" id="mobile-upt" rows="1" cols="50" placeholder="mobile '0851234567'"></textarea>
+                    <textarea class="field" id="email-upt" rows="1" cols="50" placeholder="email 'johndoe@email.com'"></textarea>
+                    <textarea class="field" id="city-upt" rows="1" cols="50" placeholder="city 'Maynooth'"></textarea>
+                    <button id="delete" onclick="reqUpdate()">Update User</button>
+                </div>
+                <!-- DELETE -->
+                <div class="section">
+                    <textarea class="field" id="firstname-del" rows="1" cols="50" placeholder="firstname 'John'"></textarea>
+                    <textarea class="field" id="mobile-del" rows="1" cols="50" placeholder="mobile '0851234567'"></textarea>
+                    <textarea class="field" id="email-del" rows="1" cols="50" placeholder="email 'johndoe@email.com'"></textarea>
+                    <button id="delete" onclick="reqDelete()">Delete User</button>
+                </div>
+            </div>
+
+            <div id="mytable">
+                <h3 id="msg">---</h3>
+                <table id="user_table"></table>
+            </div>
+        </div>
+        
+
+
+
+        <script>
+
+            let table = ""
+            let thead = null
+            let tbody = null
+
+            // this function is run when the 'Create User' is clicked
+            function reqCreate() {
+                // making AJAX request to the node.js server
+                $.ajax({
+                    type: 'POST', // POST request
+                    url: 'http://localhost:3000/create', // server URL
+                    data: JSON.stringify({ // data to be sent to the server
+                        user: datagen.user(),
+                        address: datagen.address()
+                    })
+                }).done(function (dat) { // when the server responds back
+                    const response = JSON.parse(dat) // parsing data from JSON into object format
+                    console.log(response);
+                    const { status_code, data } = response;
+                    if (status_code !== 200) { // if unsunccess response
+                        alert("[Server Error] Could not create user.")
+                    } else {
+                        thead = null
+                        if (thead == null) { // creating table head HTML only if not created already
+                            thead = "<thead><tr>"
+                            for (let k of Object.keys(data.user)) {
+                                thead += `<th>${k.toUpperCase()}</th>`
+                            }
+                            for (let k of Object.keys(data.address)) {
+                                thead += `<th>${k.toUpperCase()}</th>`
+                            }
+                            thead += "</tr></thead>"
+                            table += thead;
+                        }
+                        // populating the table with user and address data
+                        tbody = "<tbody>"
+                        for (let k of Object.values(data.user)) {
+                            tbody += `<td>${k}</td>`
+                        }
+                        for (let k of Object.values(data.address)) {
+                            tbody += `<td>${k}</td>`
+                        }
+                        tbody += "</tbody>"   
+                    }
+                    table = thead + tbody
+                    document.getElementById("user_table").innerHTML = table
+                    document.getElementById("msg").innerHTML = "Random User Created"
+                });
+            }
+
+            // this function is run when the 'Retrieve User' is clicked
+            function reqRetrieve() {
+                // pulling required data
+                const firstname = document.getElementById("firstname-ret").value.trim()
+                console.log(firstname)
+                if (firstname.length == 0) return;
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:3000/retrieve',
+                    data: JSON.stringify({ firstname })
+                }).done(function (dat) {
+                    const response = JSON.parse(dat)
+                    console.log(response);
+                    const { status_code, data } = response;
+                    if (status_code !== 200) {
+                        alert("[Server Error] Could not create user.")
+                    } else {
+                        if (data.length == 0) { // if no such user exist in the database
+                            alert("No record found for " + firstname)
+                            document.getElementById("msg").innerHTML = "No such user found"
+                            document.getElementById("user_table").innerHTML = ""
+                            return
+                        }
+                        // table headers
+                        thead = null
+                        if (thead == null) {
+                            thead = "<thead><tr>"
+                            for (let k of Object.keys(data[0])) {
+                                thead += `<th>${k.toUpperCase()}</th>`
+                            }
+                            thead += "</tr></thead>"
+                        }
+                        // populating the table
+                        tbody = "<tbody>"
+                        for (let u of data) {
+                            tbody += "<tr>"
+                            for (let k of Object.values(u)) {
+                                tbody += `<td>${k}</td>`
+                            }
+                            tbody += "</tr>"
+                        }
+                        tbody += "</tbody>"
+                        table = tbody 
+                    }
+                    table = thead + tbody
+                    document.getElementById("user_table").innerHTML = table
+                    document.getElementById("msg").innerHTML = "User Retrieved"
+                    // console.log(table)
+                });
+            }
+
+            // this function is run when the 'Update User' is clicked
+            function reqUpdate() {
+                // pulling required data
+                const id = document.getElementById("id-upt").value.trim()
+                const title = document.getElementById("title-upt").value.trim()
+                const mobile = document.getElementById("mobile-upt").value.trim()
+                const email = document.getElementById("email-upt").value.trim()
+                const city = document.getElementById("city-upt").value.trim()
+                console.log([id, title, mobile, email, city])
+                // if the required data is available in the form
+                if (id.length == 0 || title.length == 0 || mobile.length == 0 
+                    || email.length == 0 || city.length == 0) return; 
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:3000/update',
+                    data: JSON.stringify({ id, title, mobile, email, city }) // data to send to server
+                }).done(function (dat) {
+                    const response = JSON.parse(dat) // converting from JSON to object
+                    console.log(response);
+                    const { status_code, data } = response;
+                    if (status_code !== 200) { // if unsuccessfull request
+                        alert("[Server Error] Could not update user.")
+                    } else {
+                        if (data.length == 0) { // if not rows are updated on the database
+                            alert("No record found")
+                            document.getElementById("msg").innerHTML = "No such user found"
+                            document.getElementById("user_table").innerHTML = ""
+                            return
+                        }
+                        // populating table headers
+                        thead = null
+                        if (thead == null) {
+                            thead = "<thead><tr>"
+                            for (let k of Object.keys(data[0])) {
+                                thead += `<th>${k.toUpperCase()}</th>`
+                            }
+                            thead += "</tr></thead>"
+                        }
+                        // populating table with user data
+                        tbody = "<tbody>"
+                        for (let u of data) {
+                            tbody += "<tr>"
+                            for (let k of Object.values(u)) {
+                                tbody += `<td>${k}</td>`
+                            }
+                            tbody += "</tr>"
+                        }
+                        tbody += "</tbody>"
+                        table = tbody 
+                    }
+                    table = thead + tbody
+                    document.getElementById("user_table").innerHTML = table
+                    document.getElementById("msg").innerHTML = "User Updated"
+                });
+            }
+
+            // this function is run when the 'Delete User' is clicked
+            function reqDelete() {
+                // pulling required data
+                const firstname = document.getElementById("firstname-del").value.trim()
+                const mobile = document.getElementById("mobile-del").value.trim()
+                const email = document.getElementById("email-del").value.trim()
+                console.log([firstname, mobile, email])
+                // when the required data is not available
+                if (firstname.length == 0 || mobile.length == 0 || email.length == 0) return;
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:3000/delete', // delete request URL
+                    data: JSON.stringify({ firstname, mobile, email }) // data to be sent
+                }).done(function (dat) {
+                    const response = JSON.parse(dat) // converting data from JSON to object
+                    console.log(response);
+                    const { status_code, data } = response;
+                    if (status_code !== 200) { // if unsuccessfull request
+                        alert("[Server Error] Could not delete user.")
+                    } else {
+                        if (data === false) { // if not rows are affected
+                            alert("No record found")
+                            document.getElementById("msg").innerHTML = "No such user found"
+                            document.getElementById("user_table").innerHTML = ""
+                            return
+                        }
+                        // populating table headers
+                        thead = null
+                        if (thead == null) {
+                            thead = "<thead><tr>"
+                            for (let k of Object.keys(data[0])) {
+                                thead += `<th>${k.toUpperCase()}</th>`
+                            }
+                            thead += "</tr></thead>"
+                        }
+                        // populating table with user data
+                        tbody = "<tbody>"
+                        for (let u of data) {
+                            tbody += "<tr>"
+                            for (let k of Object.values(u)) {
+                                tbody += `<td>${k}</td>`
+                            }
+                            tbody += "</tr>"
+                        }
+                        tbody += "</tbody>"
+                        table = tbody 
+                    }
+                    table = thead + tbody
+                    document.getElementById("user_table").innerHTML = table
+                    document.getElementById("msg").innerHTML = "User Deleted"
+                });
+            }
+
+            // this function is called to auto select 'Other' in dropdown when title field is focused
+            function setTitle() {
+                document.querySelector("select").selectedIndex = "6"
+            }
+
+            // 
+            (function selectTitle() {
+                // default drop down titles
+                const titles = ["mr","ms","mx","mrs","miss","dr"]
+                let select = document.querySelector("select");
+                select.addEventListener("change", (e) => {
+                    if (select.value == "Other") {
+                        document.getElementById("title-upt").focus() // focusing on title field
+                    } else {
+                        document.getElementById("title-upt").innerText = select.value
+                    }
+                });
+            })()
+            
+
+            const datagen = {
+                // utility function to create a random user
+                user: function() {
+                    const title = ["Mx", "Mr", "Mrs", "Dr", "Miss"]
+                    const first = ["John", "Phillip", "James", "Carl", "Alvin", "Aaron", "Bruce", "Casey", "David"]
+                    const last = ["Michael", "Carter", "Chapman", "Hull", "Carrick"]
+                    const i = this.rn(first.length)
+                    const j = this.rn(last.length)
+                    const k = this.rn(title.length)
+                    const mobile = "085" + this.rn(9999999)
+                    const email = first[i].toLowerCase() + last[j].toLowerCase()+ (this.rn(100)+10)+"@email.com"
+                    return {title: title[k], firstname: first[i], surname:last[j], mobile, email}
+                },
+                // utility function to create a random address for user
+                address: function() {
+                    const line1 = ["Dublin Road","Main Street", "Tolkien Street", "Beaufield Ave", "Straffan Wood", "Greene Estate"]
+                    const cities = ["Dublin", "Tallaght", "Lucan", "Maynooth", "Kildare", "Wicklow", "Galway"]
+                    const i = this.rn(line1.length)
+                    const j = this.rn(cities.length)
+                    const city = cities[j]
+                    const physical =  (this.rn(20)+1) + " " + line1[i]
+                    const shipping = physical
+                    const eircode = "W" + (this.rn(20)+10) + "V" + (this.rn(9)+1) + "K" + (this.rn(9)+1)
+                    return {physical: physical, shipping:shipping, city:city, eircode:eircode}
+                },
+                // random number function
+                rn: function(range) {
+                    return Math.floor(Math.random() * range);
+                }
+
+            }
+        </script>
+    </body>
+</html>
