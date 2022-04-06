@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" type = "text/css" href = "assignment-01.css"/>
+    </head>
+    <body>
+        <div class = "app-container">
+            <div class="level level1">
+                <div class = "level-number">1</div>
+                <div class = "control-panel" style = "margin-top: 130px;">
+                    <div class = "control-btn" id = "cb1minus">-</div>
+                    <div class = "control-counter" id = "cc1">0</div>
+                    <div class = "control-btn" id = "cb1plus">+</div>
+                </div>
+            </div>  
+            <div class="level level2">
+                <div class = "level-number">2</div>
+                <div class = "control-panel">
+                    <div class = "control-btn" id = "cb2minus">-</div>
+                    <div class = "control-counter" id = "cc2">0</div>
+                    <div class = "control-btn" id = "cb2plus">+</div>
+                </div>
+            </div>
+            <div class="level level3">
+                <div class = "level-number">3</div>
+                <div class = "control-panel">
+                    <div class = "control-btn" id = "cb3minus">-</div>
+                    <div class = "control-counter" id = "cc3">0</div>
+                    <div class = "control-btn" id = "cb3plus">+</div>
+                </div>
+            </div>  
+            <div class="level level4">
+                <div class = "level-number">4</div>
+                <div class = "control-panel">
+                    <div class = "control-btn" id = "cb4minus">-</div>
+                    <div class = "control-counter" id = "cc4">0</div>
+                    <div class = "control-btn" id = "cb4plus">+</div>
+                </div>
+            </div>
+            <div class="level level5">
+                <div class = "level-number">5</div>
+                <div class = "control-panel">
+                    <div class = "control-btn" id = "cb5minus">-</div>
+                    <div class = "control-counter" id = "cc5">0</div>
+                    <div class = "control-btn" id = "cb5plus">+</div>
+                </div>
+            </div>   
+            <div class="level level6">
+                <div class = "level-number">6</div>
+                <div class = "control-panel">
+                    <div class = "control-btn" id = "cb6minus">-</div>
+                    <div class = "control-counter" id = "cc6">0</div>
+                    <div class = "control-btn" id = "cb6plus">+</div>
+                </div>
+            </div>
+
+            <span id = "age-control">
+                <input type="checkbox" id="age" name="age" value="no"/>
+                <label for="age"> under 18 </label>
+            </span>
+
+            <input type="text" name="today" value = "" id="today" placeholder="dd/mm/yyyy" onchange="dateValidation()"/>
+        </div>
+
+        <script src = "assignment-01.js"></script>
+    </body>
+</html>

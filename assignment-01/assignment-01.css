@@ -1,0 +1,118 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: cyan    ;
+    width: 700px;
+    height: 765px;
+}
+
+.level-number {
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+.level {
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    height: 0;
+    width: 600px;
+    margin-right:auto;
+    margin-left:auto;
+    display: flex;
+    align-items: bottom;
+    justify-content: center;
+}
+
+.level1 {
+    border-bottom: 190px solid red;
+    border-left: 95px solid transparent;
+    border-right: 95px solid transparent;    
+    width: 0px;
+    margin-bottom: 5px;
+}
+
+.level2 {
+    border-bottom: 100px solid orange;
+    width: 195px;
+    margin-bottom: 5px;
+}
+.level3 {
+    border-bottom: 100px solid yellow;
+    width: 300px;
+}
+
+
+.level4 {
+    border-bottom: 100px solid rgb(87, 179, 255);
+    width: 400px;
+}
+
+.level5 {
+    border-bottom: 100px solid rgb(155, 113, 78);
+    width: 500px;
+}
+
+.level6 {
+    position: relative;
+    border-bottom: 100px solid rgb(3, 211, 3);
+    width: 600px;
+}
+
+
+.control-panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    margin-top: 40px;
+    height: 50px;
+    width: 150px;
+}
+
+.control-btn {
+    display: none;
+    text-align: center;
+    font-size: 2em;
+    background-color: white;
+    border: 2px grey solid;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+}
+
+.control-counter {
+    text-align: center;
+    font-size: 2.25em;
+    background-color: white;
+    border: 2px grey solid;
+    /* border-radius: 30px; */
+    width: 40px;
+    height: 40px;
+}
+
+
+.level:hover > * > .control-btn {
+    display: block;
+}
+
+
+#age-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+#today {
+    text-align: center;
+    font-size: 18px;
+    width: 25%;
+    padding: 5px 10px;
+    margin: 4px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    /* box-sizing: border-box; */
+}
