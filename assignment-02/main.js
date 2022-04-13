@@ -58,7 +58,7 @@ function animateTransform(target, options1, options2, reverse=true) {
     animate_forward.setAttribute("attributeName","transform");
     animate_forward.setAttribute("type","rotate");
     animate_forward.setAttribute("begin","0s;two.end");
-    
+
     // creating animateTransform tag in the given namespace
     const animate_backward = document.createElementNS('http://www.w3.org/2000/svg','animateTransform');
     animate_backward.setAttribute("id","two");
@@ -104,7 +104,7 @@ function UpDown() {
             from: "40",
             to: "60",
             dur: "2s"
-        }, 
+        },
         {
             attributeName: "cy",
             from: "60",
@@ -116,7 +116,7 @@ function UpDown() {
             from: "40",
             to: "60",
             dur: "2s"
-        }, 
+        },
         {
             attributeName: "cy",
             from: "60",
@@ -128,7 +128,7 @@ function UpDown() {
             from: "44",
             to: "64",
             dur: "2s"
-        }, 
+        },
         {
             attributeName: "cy",
             from: "64",
@@ -140,7 +140,7 @@ function UpDown() {
             from: "44",
             to: "64",
             dur: "2s"
-        }, 
+        },
         {
             attributeName: "cy",
             from: "64",
@@ -152,7 +152,7 @@ function UpDown() {
             from: "30",
             to: "50",
             dur: "2s"
-        }, 
+        },
         {
             attributeName: "y",
             from: "50",
@@ -164,7 +164,7 @@ function UpDown() {
             from: "30",
             to: "50",
             dur: "2s"
-        }, 
+        },
         {
             attributeName: "y",
             from: "50",
@@ -327,37 +327,37 @@ function Color() {
             attributeName: "fill",
             values : "red; orange; yellow; green; blue; indigo; violet; red",
             repeatCount: "indefinite",
-            dur: "5s"   
+            dur: "5s"
         })
         animate(eye.right, {
             attributeName: "fill",
             values : "red; orange; yellow; green; blue; indigo; violet; red",
             repeatCount: "indefinite",
-            dur: "5s"   
+            dur: "5s"
         })
         animate(eyeball.left, {
             attributeName: "fill",
             values : "red; orange; yellow; green; blue; indigo; violet; red",
             repeatCount: "indefinite",
-            dur: "5s"   
+            dur: "5s"
         })
         animate(eyeball.right, {
             attributeName: "fill",
             values : "red; orange; yellow; green; blue; indigo; violet; red",
             repeatCount: "indefinite",
-            dur: "5s"   
+            dur: "5s"
         })
         animate(brow.left, {
             attributeName: "fill",
             values : "red; orange; yellow; green; blue; indigo; violet; red",
             repeatCount: "indefinite",
-            dur: "5s"   
+            dur: "5s"
         })
         animate(brow.right, {
             attributeName: "fill",
             values : "red; orange; yellow; green; blue; indigo; violet; red",
             repeatCount: "indefinite",
-            dur: "5s"   
+            dur: "5s"
         })
     }
 }
@@ -379,21 +379,21 @@ function Border() {
             from: "1",
             to: "4",
             dur: "5s",
-            repeatCount: "indefinite",  
+            repeatCount: "indefinite",
         })
         animate(eyeball.left, {
             attributeName: "stroke-width",
             from: "0.25",
             to: "2",
             dur: "5s",
-            repeatCount: "indefinite",  
+            repeatCount: "indefinite",
         })
         animate(eyeball.right, {
             attributeName: "stroke-width",
             from: "0.25",
             to: "2",
             dur: "5s",
-            repeatCount: "indefinite",   
+            repeatCount: "indefinite",
         })
         animate(brow.left, {
             attributeName: "stroke-width",
@@ -407,7 +407,7 @@ function Border() {
             from: "0.25",
             to: "2",
             dur: "5s",
-            repeatCount: "indefinite",  
+            repeatCount: "indefinite",
         })
     }
 }
@@ -422,7 +422,7 @@ function Scale() {
             from: "1",
             to: "0",
             dur: "4s",
-        }, 
+        },
         {
             attributeName: "transform",
             additive: "sum",
@@ -439,7 +439,7 @@ function Scale() {
 // this function is called when the animate button is pressed
 function Animate() { window.effect() }
 
-// this function produce the svg code 
+// this function produce the svg code
 function XML() {
     var displayBox = document.getElementById('editor');
     displayBox.textContent = document.getElementById("svg-wrapper").innerHTML;
@@ -464,4 +464,3 @@ function saveSvg(svgEl, name) {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 }
-
