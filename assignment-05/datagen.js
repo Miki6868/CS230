@@ -2,7 +2,7 @@
 module.exports = {
     // utility function to create a random user
     user: function() {
-        const user_id = this.rn(1000000);
+        const user_id = this.rn(10000000)
         const title = ["Mx", "Mr", "Mrs", "Dr", "Miss"]
         const first = ["John", "Phillip", "James", "Carl", "Alvin", "Aaron", "Bruce", "Casey", "David"]
         const last = ["Michael", "Carter", "Chapman", "Hull", "Carrick"]
@@ -11,6 +11,8 @@ module.exports = {
         const k = this.rn(title.length)
         const mobile = "085" + this.rn(9999999)
         const email = first[i].toLowerCase() + last[j].toLowerCase()+ (this.rn(100)+10)+"@email.com"
+
+        console.log(user_id)
         return {user_id, title: title[k], firstname: first[i], surname:last[j], mobile, email}
     },
     // utility function to create a random address for user

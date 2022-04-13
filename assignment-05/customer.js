@@ -19,7 +19,7 @@ const Customer = {
         });
     },
 
-    updateCustomer: function(dbo, query, newdata) {
+    updateCustomer: function(dbo, query, newdata, callback = function(res) {}) {
         var newvalues = { $set: newdata };
         dbo.collection("customers").updateMany(query, newvalues, function(err, res) {
             if (err) throw err;
@@ -39,7 +39,6 @@ const Customer = {
     deleteCustomer: function(dbo, query) {
         dbo.collection("customers").deleteMany(query, function(err, obj) {
             if (err) throw err;
-            console.log(obj)
             if (obj.deletedCount > 0) {
                 PrettyPrintMyData([query], "User Deleted!")
             } else {

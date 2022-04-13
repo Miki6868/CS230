@@ -4,11 +4,9 @@ const Order = {
 
     insertOrder: function(dbo, data) {
         dbo.collection("orders").insertOne(data, function(err, res) {
-        if (err) throw err;
-        // console.log("\n**********************")
-        // console.log(`*** User Inserted ***`)
-        // console.log("**********************")
-        PrettyPrintMyData([data], "Order Inserted")
+            if (err) throw err;
+            console.log(res)
+            PrettyPrintMyData([data], "Order Inserted")
         });    
     },
 
