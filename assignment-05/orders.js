@@ -1,50 +1,53 @@
-const { users, address, rn, PrettyPrintMyData } = require('./datagen.js')
+const { items, rn, PrettyPrintMyData, order } = require('./datagen.js')
 
 const Order = {
 
-    insertOrder: function(dbo, data) {
+    insertOrder: function(dbo, data, callback=function(res) {}) {
         dbo.collection("orders").insertOne(data, function(err, res) {
             if (err) throw err;
-            console.log(res)
             PrettyPrintMyData([data], "Order Inserted")
+            callback(res)
         });    
     },
 
-    retrieveOrder: function(dbo, query, title="Order Retrieved") {
+    retrieveOrder: function(dbo, query, title="Order Retrieved", callback=function(res) {}) {
         dbo.collection("orders").find(query).toArray(function(err, result) {
             if (err) throw err;
             PrettyPrintMyData(result, title)
+            callback(result)
         });
     },
 
-    updateOrder: function(dbo, query, newdata) {
+    updateOrder: function(dbo, query, newdata, callback=function(res) {}) {
         var newvalues = { $set: newdata };
         dbo.collection("orders").updateMany(query, newvalues, function(err, res) {
             if (err) throw err;
 
             if (res.matchedCount > 0) {
                 if (res.modifiedCount > 0) {
-                    Customer.retrieveCustomer(dbo, newdata, "Order Updated")
+                    Order.retrieveOrder(dbo, newdata, "Order Updated")
+                    // callback(res)
                 } else {
-                    console.log("Order Update unsuccesful")
+                    console.log("update unsuccesful")
                 }
             } else {
-                console.log("No such Order found")
+                console.log("No such Item found")
             }
+            callback(res)
         });
     },
 
-    deleteOrder: function(dbo, query) {
+    deleteOrder: function(dbo, query, callback=function(res) {}) {
         dbo.collection("orders").deleteMany(query, function(err, obj) {
             if (err) throw err;
-            console.log(obj)
             if (obj.deletedCount > 0) {
                 PrettyPrintMyData([query], "Order Deleted!")
             } else {
-                console.log("Order not found!")
+                console.log("Item not found!")
             }
+            callback(obj)
         });
     }
 }
 
-module.exports = Customer
+module.exports = Order

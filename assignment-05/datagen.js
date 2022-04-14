@@ -32,31 +32,48 @@ module.exports = {
 
     item: function() {
         const phones = [
-            {item_id: 1, manufacturer: "iPhone", model: "iPhone SE", price: 400}, 
-            {item_id: 2, manufacturer: "iPhone", model: "iPhone 7", price: 200}, 
-            {item_id: 3, manufacturer: "iPhone", model: "iPhone 8", price: 260}, 
-            {item_id: 4, manufacturer: "iPhone", model: "iPhone X", price: 300}, 
-            {item_id: 5, manufacturer: "iPhone", model: "iPhone XS", price: 340}, 
-            {item_id: 6, manufacturer: "iPhone", model: "iPhone 11 Pro Max", price: 500}, 
-            {item_id: 7, manufacturer: "iPhone", model: "iPhone 12 Mini", price: 600}, 
-            {item_id: 8, manufacturer: "iPhone", model: "iPhone 12 Pro", price: 799}, 
-            {item_id: 9, manufacturer: "iPhone", model: "iPhone 13 Pro Max", price: 999},
-            {item_id: 10, manufacturer: "Samsung", model: "Galaxy S7", price: 169}, 
-            {item_id: 11, manufacturer: "Samsung", model: "Galaxy S8", price: 199}, 
-            {item_id: 12, manufacturer: "Samsung", model: "Galaxy S9", price: 260}, 
-            {item_id: 13, manufacturer: "Samsung", model: "Galaxy S10", price: 300}, 
-            {item_id: 14, manufacturer: "Samsung", model: "Galaxy S20", price: 360}, 
-            {item_id: 15, manufacturer: "Samsung", model: "Galaxy S21", price: 450}, 
-            {item_id: 16, manufacturer: "Samsung", model: "Galaxy S22", price: 600}, 
-            {item_id: 17, manufacturer: "Samsung", model: "Galaxy Tab A", price: 240}, 
-            {item_id: 18, manufacturer: "Samsung", model: "Galaxy Tab S", price: 499},
-            {item_id: 19, manufacturer: "Huawai", model: "Mate Tab", price: 399}, 
-            {item_id: 20, manufacturer: "Huawai", model: "Mate Pro 20", price: 360}, 
-            {item_id: 21, manufacturer: "Huawai", model: "Mate Pro 20 mini", price: 300}, 
-            {item_id: 22, manufacturer: "Huawai", model: "Mate Pro 40", price: 799}, 
+            {item_id:this.rn(100000), manufacturer: "Apple", model: "iPhone SE", price: 400}, 
+            {item_id:this.rn(100000), manufacturer: "Apple", model: "iPhone 7", price: 200}, 
+            {item_id:this.rn(100000), manufacturer: "Apple", model: "iPhone 8", price: 260}, 
+            {item_id:this.rn(100000), manufacturer: "Apple", model: "iPhone X", price: 300}, 
+            {item_id:this.rn(100000), manufacturer: "Apple", model: "iPhone XS", price: 340}, 
+            {item_id:this.rn(100000), manufacturer: "Apple", model: "iPhone 11 Pro Max", price: 500}, 
+            {item_id:this.rn(100000), manufacturer: "Apple", model: "iPhone 12 Mini", price: 600}, 
+            {item_id:this.rn(100000), manufacturer: "Apple", model: "iPhone 12 Pro", price: 799}, 
+            {item_id:this.rn(100000), manufacturer: "Apple", model: "iPhone 13 Pro Max", price: 999},
+            {item_id:this.rn(100000), manufacturer: "Samsung", model: "Galaxy S7", price: 169}, 
+            {item_id:this.rn(100000), manufacturer: "Samsung", model: "Galaxy S8", price: 199}, 
+            {item_id:this.rn(100000), manufacturer: "Samsung", model: "Galaxy S9", price: 260}, 
+            {item_id:this.rn(100000), manufacturer: "Samsung", model: "Galaxy S10", price: 300}, 
+            {item_id:this.rn(100000), manufacturer: "Samsung", model: "Galaxy S20", price: 360}, 
+            {item_id:this.rn(100000), manufacturer: "Samsung", model: "Galaxy S21", price: 450}, 
+            {item_id:this.rn(100000), manufacturer: "Samsung", model: "Galaxy S22", price: 600}, 
+            {item_id:this.rn(100000), manufacturer: "Samsung", model: "Galaxy Tab A", price: 240}, 
+            {item_id:this.rn(100000), manufacturer: "Samsung", model: "Galaxy Tab S", price: 499},
+            {item_id:this.rn(100000), manufacturer: "Huawai", model: "Mate Tab", price: 399}, 
+            {item_id:this.rn(100000), manufacturer: "Huawai", model: "Mate Pro 20", price: 360}, 
+            {item_id:this.rn(100000), manufacturer: "Huawai", model: "Mate Pro 20 mini", price: 300}, 
+            {item_id:this.rn(100000), manufacturer: "Huawai", model: "Mate Pro 40", price: 799}, 
         ]
         // return phones;
         return phones[this.rn(phones.length)]        
+    },
+
+    order: function({ user_id, firstname, email }, items) {
+        const purchases = []
+        for (let i = 0; i < items.length; i++) {
+            const purchase = {}
+            purchase['purchase_id'] = i
+            purchase['item_id'] = items[i].item_id
+            purchases.push(purchase)
+        }
+        return { 
+            order_id: this.rn(1000000), 
+            user_id, 
+            firstname, 
+            email, 
+            purchases //items.map(i => i.item_id)
+        }
     },
 
     // random number function
@@ -70,8 +87,12 @@ module.exports = {
         console.log("**********************")
         data.forEach(function(p, index){
             for (var key in p){
-                if (key !== "_id")
-                    console.log(key, ":" ,p[key]);
+                if (key === "_id") continue;
+                if (key === "purchases") {
+                    console.log(key, ":", p[key])
+                } else {
+                    console.log(key, ":", p[key]);
+                }
             }
         });
         console.log("**********************")
