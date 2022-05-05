@@ -1,5 +1,3 @@
-// syed47
-// 1JMFjW4UWLDMCEhE
 
 const { MongoClient } = require('mongodb');
 const { users, address, rn, PrettyPrintMyData } = require('./datagen.js')
@@ -136,33 +134,3 @@ function fillDB(db) {
     })
 }
 
-
-
-
-/*
-
-Assignment 5
-Syed Baryalay
-19719431
-
-Developed using Macos, Node.js 16.14.2
-
-node_modules need to be installed before running. ("npm instal")
-To test the application, run "node index.js".
-
-It performs all the CRUD activities for the 3 collections, and prints output to 
-the console.
-
-I recommened running the application more than once to see different number of
-purchases and orders.
-
-
-My database design is partially normalized, it store the user_id and item_id on each 
-order and each purchase as a unique purchase_id.
-I also store the name and email of user in the order table.
-I did this so query orders and purchases user matching email.
-
-
-The program works exactly as required. Any issues let me know.
-
-*/
