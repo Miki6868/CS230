@@ -13,7 +13,7 @@ const Customer = {
         });    
     },
 
-    retrieveCustomer: function(db, query, title="User Retrieved", callback=function(res) {}) {
+    findCustomer: function(db, query, title="User Retrieved", callback=function(res) {}) {
         db.collection("customers").find(query).toArray(function(err, result) {
             if (err) throw err;
             PrettyPrintMyData(result, title)
@@ -28,7 +28,7 @@ const Customer = {
 
             if (res.matchedCount > 0) {
                 if (res.modifiedCount > 0) {
-                    Customer.retrieveCustomer(db, newdata, "User Updated")
+                    Customer.findCustomer(db, newdata, "User Updated")
                     // PrettyPrintMyData([newdata], "User Updated")
                 } else {
                     console.log("update unsuccesful")

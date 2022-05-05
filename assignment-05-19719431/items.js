@@ -10,7 +10,7 @@ const Item = {
         });    
     },
 
-    retrieveItem: function(dbo, query, title="Item(s) Retrieved", callback=function(res) {}) {
+    findItem: function(dbo, query, title="Item(s) Retrieved", callback=function(res) {}) {
         dbo.collection("items").find(query).toArray(function(err, result) {
             if (err) throw err;
             PrettyPrintMyData(result, title)
@@ -25,7 +25,7 @@ const Item = {
 
             if (res.matchedCount > 0) {
                 if (res.modifiedCount > 0) {
-                    Item.retrieveItem(dbo, newdata, "Item(s) Updated")
+                    Item.findItem(dbo, newdata, "Item(s) Updated")
                     // callback(res)
                 } else {
                     console.log("update unsuccesful")

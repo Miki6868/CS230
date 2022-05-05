@@ -10,7 +10,7 @@ const Order = {
         });    
     },
 
-    retrieveOrder: function(dbo, query, title="Order Retrieved", callback=function(res) {}) {
+    findOrder: function(dbo, query, title="Order Retrieved", callback=function(res) {}) {
         dbo.collection("orders").find(query).toArray(function(err, result) {
             if (err) throw err;
             PrettyPrintMyData(result, title)
@@ -25,7 +25,7 @@ const Order = {
 
             if (res.matchedCount > 0) {
                 if (res.modifiedCount > 0) {
-                    Order.retrieveOrder(dbo, newdata, "Order Updated")
+                    Order.findOrder(dbo, newdata, "Order Updated")
                     // callback(res)
                 } else {
                     console.log("update unsuccesful")
